@@ -32,8 +32,8 @@ For explanation see [nanoPhotosProvider2][1].
 Docker `--env-file` example:
 
 ```ini
-ENVIRONMENT=development
-nanoPP2_TIMEOUT=90
+# ENVIRONMENT=development
+# nanoPP2_TIMEOUT=90
 
 albumCoverDetector=@@@
 maxSize=3072
