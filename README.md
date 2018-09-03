@@ -22,7 +22,7 @@ Docker container for [nanoPhotosProvider2][2].
 
 Supported options are:
 
-`fileExtensions`, `sortOrder`, 
+`nanoPP2_TIMEOUT`, `ENVIRONMENT`, `fileExtensions`, `sortOrder`, 
 `titleDescSeparator`, `albumCoverDetector`, `ignoreDetector`, 
 `maxSize`, `jpegQuality`, `jpegThumbsQuality`, `blurredImageQuality`,
 `allowedSizeValues`, `allowOrigins`, `unlimited`
@@ -33,6 +33,7 @@ Docker `--env-file` example:
 
 ```ini
 ENVIRONMENT=development
+nanoPP2_TIMEOUT=90
 
 albumCoverDetector=@@@
 maxSize=3072

@@ -38,9 +38,9 @@ EOT
 ###
 
 if [[ `basename ${1}` == "php" ]]; then # prod
-  exec "$@" </dev/null #>/dev/null 2>&1
+  exec "$@" -d max_execution_time=${nanoPP2_TIMEOUT} </dev/null #>/dev/null 2>&1
 else # dev
-  /usr/local/bin/php -S 0.0.0.0:80
+  /usr/local/bin/php -S 0.0.0.0:80 -d max_execution_time=${nanoPP2_TIMEOUT}
 fi
 
 # fallthrough...
