@@ -15,6 +15,7 @@ RUN apk add --no-cache sudo bash && \
     wget https://github.com/nanostudio-org/nano_photos_provider2/archive/v${nanoPP2_VERSION}.zip && \
     unzip v${nanoPP2_VERSION}.zip && \
     cp -r nano_photos_provider2-${nanoPP2_VERSION}/dist/*.* ${nanoPP2_BASE} && \
+    rm -f ${nanoPP2_BASE}/nano_photos_provider2_check.php && \
     rm -rf nano_photos_provider2-${nanoPP2_VERSION} v${nanoPP2_VERSION}.zip
 
 COPY docker-entrypoint.sh /entrypoint.sh
