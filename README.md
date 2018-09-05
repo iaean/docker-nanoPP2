@@ -22,7 +22,7 @@ Docker container for [nanoPhotosProvider2][2].
 
 Supported options are:
 
-`nanoPP2_TIMEOUT`, `ENVIRONMENT`, `fileExtensions`, `sortOrder`, 
+`nanoPP2_TIMEOUT`, `fileExtensions`, `sortOrder`, 
 `titleDescSeparator`, `albumCoverDetector`, `ignoreDetector`, 
 `maxSize`, `jpegQuality`, `jpegThumbsQuality`, `blurredImageQuality`,
 `allowedSizeValues`, `allowOrigins`, `unlimited`
@@ -32,7 +32,6 @@ For explanation see [nanoPhotosProvider2][1].
 Docker `--env-file` example:
 
 ```ini
-# ENVIRONMENT=development
 # nanoPP2_TIMEOUT=90
 
 albumCoverDetector=@@@
@@ -42,7 +41,7 @@ jpegThumbsQuality=100
 blurredImageQuality=5
 
 # allowedSizeValues=50|100|225|150|200|300|auto
-# allowOrigins=http://nanogallery2.nanostudio.org|https://nanogallery2.nanostudio.org
+# allowOrigins=http://blog.example.com|https://blog.example.com
 ```
 
 ## Running
@@ -58,7 +57,7 @@ To provide adequate security and handle your certificate bale, you are highly en
 ProxyPreserveHost On
 RequestHeader set X-Forwarded-Proto "https"
 
-ProxyPass / http://nanopp2:4711/
+ProxyPass / http://nanopp2:4711/ connectiontimeout=5 timeout=300
 ProxyPassReverse / http://nanopp2:4711/
 ```
 
@@ -87,3 +86,7 @@ $("#nanogallery2").nanogallery2({
 ```
 
 [5]: https://nanogallery2.nanostudio.org/
+
+## TODO
+
+* [ ] Replace the builtin PHP server with Apache

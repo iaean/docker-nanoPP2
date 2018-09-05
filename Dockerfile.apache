@@ -1,0 +1,42 @@
+FROM alpine:3.8
+
+MAINTAINER Andreas Schulze <asl@iaean.net>
+
+ENV nanoPP2_BASE=/var/www/localhost/htdocs
+ENV nanoPP2_MEDIA=content
+ENV nanoPP2_VERSION=1.1.0
+ENV nanoPP2_TIMEOUT=0
+
+# Install Apache with PHP
+#
+RUN apk add --no-cache apache2 php7-apache2 && \
+    apk add --no-cache php7-gd php7-json php7-ctype && \
+    apk add --no-cache sudo bash && \
+    rm -f /etc/apache2/conf.d/info.conf \
+          /etc/apache2/conf.d/userdir.conf \
+          /etc/apache2/conf.d/languages.conf && \
+    mkdir /run/apache2
+
+# Install nanoPhotosProvider2
+#
+RUN mkdir -p ${nanoPP2_BASE}/${nanoPP2_MEDIA} && \
+    chown -R apache:apache ${nanoPP2_BASE} && \
+    wget https://github.com/nanostudio-org/nano_photos_provider2/archive/v${nanoPP2_VERSION}.zip && \
+    unzip v${nanoPP2_VERSION}.zip && \
+    cp -r nano_photos_provider2-${nanoPP2_VERSION}/dist/*.* ${nanoPP2_BASE} && \
+    # rm -f ${nanoPP2_BASE}/nano_photos_provider2_check.php && \
+    rm -rf nano_photos_provider2-${nanoPP2_VERSION} v${nanoPP2_VERSION}.zip
+
+# Apache config
+#
+COPY apache.conf/httpd.conf /etc/apache2/
+COPY apache.conf/conf.d/*.conf /etc/apache2/conf.d/
+
+COPY docker-entrypoint.apache.sh /entrypoint.sh
+
+WORKDIR ${nanoPP2_BASE}
+VOLUME ${nanoPP2_BASE}/${nanoPP2_MEDIA}
+
+EXPOSE 80
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
