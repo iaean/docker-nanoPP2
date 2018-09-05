@@ -89,4 +89,4 @@ $("#nanogallery2").nanogallery2({
 
 ## TODO
 
-* [ ] Replace the builtin PHP server with Apache
+* [x] Replace the builtin PHP server with Apache
