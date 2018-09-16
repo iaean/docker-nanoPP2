@@ -18,6 +18,8 @@ RUN apk add --no-cache sudo bash && \
     rm -f ${nanoPP2_BASE}/nano_photos_provider2_check.php && \
     rm -rf nano_photos_provider2-${nanoPP2_VERSION} v${nanoPP2_VERSION}.zip
 
+COPY nanogallery.js ${nanoPP2_BASE}
+
 COPY docker-entrypoint.php-cli.sh /entrypoint.sh
 
 WORKDIR ${nanoPP2_BASE}
