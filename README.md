@@ -22,7 +22,7 @@ Docker container for [nanoPhotosProvider2][2].
 
 Supported options are:
 
-`nanoPP2_TIMEOUT`, `fileExtensions`, `sortOrder`, 
+`nanoPP2_TIMEOUT`, `nanoPP2_MEMORY`, `fileExtensions`, `sortOrder`, 
 `titleDescSeparator`, `albumCoverDetector`, `ignoreDetector`, 
 `maxSize`, `jpegQuality`, `jpegThumbsQuality`, `blurredImageQuality`,
 `allowedSizeValues`, `allowOrigins`, `unlimited`
@@ -32,7 +32,8 @@ For explanation see [nanoPhotosProvider2][1].
 Docker `--env-file` example:
 
 ```ini
-# nanoPP2_TIMEOUT=90
+# nanoPP2_TIMEOUT=900
+# nanoPP2_MEMORY=256M
 
 albumCoverDetector=@@@
 maxSize=3072

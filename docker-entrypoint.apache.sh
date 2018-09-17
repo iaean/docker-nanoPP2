@@ -33,7 +33,12 @@ allowOrigins="${allowOrigins:-*}"
 unlimited=${unlimited:-false}
 EOT
 
+sed -i -e "s/^Timeout .*/Timeout ${nanoPP2_TIMEOUT}/g" /etc/apache2/conf.d/default.conf
 sed -i -e "s/^max_execution_time.*/max_execution_time = ${nanoPP2_TIMEOUT}/g" /etc/php7/php.ini
+# sed -i -e "s/^max_input_time.*/max_input_time = ${nanoPP2_TIMEOUT}/g" /etc/php7/php.ini
+if [[ -n ${nanoPP2_MEMORY} ]]; then
+  sed -i -e "s/^memory_limit.*/memory_limit = ${nanoPP2_MEMORY}/g" /etc/php7/php.ini
+fi
 
 ###
 ### Start apache...
