@@ -29,7 +29,7 @@ function initNanogallery2 (i, t, a, u) {
         displayDescription: false,
         titleFontSize:      "0.75em"
       },
-      thumbnailAlignment:            "center",
+      // thumbnailAlignment:            "center",
       thumbnailDisplayOutsideScreen: false,
       thumbnailWaitImageLoaded:      false,
       viewerToolbar: {
